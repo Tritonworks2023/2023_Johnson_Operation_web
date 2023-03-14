@@ -1,0 +1,75 @@
+<div class="page-header">
+    <div>
+        <h2 class="main-content-title tx-24 mb-1">Join Inspection Data entry Details</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="dashboard">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Details</li>
+        </ol>
+    </div>
+    <div class="rows">
+      <h2 class="main-content-title tx-24 mb-1">Job No : {{job_detail.job_id}}</h2>
+      <h2 class="main-content-title tx-24 mb-1">No of Count : {{job_count}}</h2>
+    </div>
+  </div>
+   <div class="row">
+   </div>
+  <!-- <div class="loader"></div> -->
+  <div class="row">
+  <button type="button" style="float:right" class="btn btn-primary mt-4" (click)="printComponent('component1')">Print Now</button>
+  </div>
+
+  <div class="container" id="component1">
+  <div class="card custom-card">
+
+    
+    <div class="title_card" style="text-align: left !important;">SERV / 08 / QR / 01</div>
+    <div class="title_card">Job No : {{job_detail.job_id}} </div>
+    <div class="title_card">No of Count : {{job_count}} </div>
+    <div class="card-body">
+        <div class="card-item">
+            <table style="width:100%; color:black;">
+              <tr>
+                <th class="th-1">
+                  S.No
+              </th>
+              <!-- <th>
+                Sub Group name
+              </th> -->
+              <th>
+                Field Name
+              </th>
+                <th>
+               Field Descr
+                </th>
+               <ng-container  *ngFor="let items of job_list_detail; let i = index">
+                <th>
+                  Name : {{items.user_id.user_name}} 
+                  <br>
+                  <!-- Id : {{items.user_id.user_id}} -->
+                 </th>
+               </ng-container>
+              </tr>
+              <ng-container *ngFor="let item of table_data; let i = index">
+                <tr>
+                  <td>{{i+1}}</td>
+                  <!-- <td>{{ this.job_detail.sub_group_id.sub_group_detail_name}}</td> -->
+                  <th>{{item.field_name}}</th>
+                  <th>{{item.field_comments}}</th>
+                  <ng-container  *ngFor="let items of job_list_detail; let j = index">
+                    <td> 
+                      {{items.data_store[i].field_value}}
+                     </td>
+                   </ng-container>
+                </tr>
+              </ng-container>
+  
+  
+  
+  
+            </table>
+  
+            </div>
+            </div>
+  </div>
+</div>
+  
