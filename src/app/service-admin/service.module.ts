@@ -42,9 +42,9 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
-import { NgOtpInputModule } from 'ng-otp-input'
+// import { NgOtpInputModule } from 'ng-otp-input'
 import {CheckboxModule} from 'primeng/checkbox';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+// import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { ServiceRoutingModule } from './service-routing.module';
 import { ServiceNavBarComponent } from './components/service-nav-bar/service-nav-bar.component';
 import { ServiceDashboardComponent } from './service-page/service-dashboard/service-dashboard.component';
@@ -53,7 +53,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ServiceReportTableComponent } from './service-page/service-report/service-report-table/service-report-table.component';
 import { ServiceColumnPopupComponent } from './components/service-column-popup/service-column-popup.component';
 import { JobStatusPopupComponent } from './components/job-status-popup/job-status-popup.component';
-import { NgxPrintElementModule } from 'ngx-print-element';
+// import { NgxPrintElementModule } from 'ngx-print-element';
 import { ServiceAgentComponent } from './service-page/service-agent/service-agent.component';
 import { ServiceAddAgentComponent } from './service-page/service-agent/service-add-agent/service-add-agent.component';
 import { ServiceSideadminComponent } from './service-page/service-sideadmin/service-sideadmin.component';
@@ -93,8 +93,8 @@ import { BreakdownservicePdfComponent } from './components/breakdownservice-pdf/
     DragDropModule,
     InputTextModule,
     CalendarModule,
-    AutocompleteLibModule,
-    NgxPrintElementModule,
+    // AutocompleteLibModule,
+    // NgxPrintElementModule,
     AutoCompleteModule,
     Ng2SearchPipeModule,
     TableModule,
@@ -102,7 +102,7 @@ import { BreakdownservicePdfComponent } from './components/breakdownservice-pdf/
     TooltipModule,
     MultiSelectModule,
     TabViewModule,
-    NgOtpInputModule,
+    // NgOtpInputModule,
     ChartsModule,
     CheckboxModule,
     NgMultiSelectDropDownModule.forRoot(),
@@ -111,7 +111,7 @@ import { BreakdownservicePdfComponent } from './components/breakdownservice-pdf/
     }),
     GooglePlaceModule,
     FilterPipeModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
 
   ],
   schemas: [

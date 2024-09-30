@@ -21,7 +21,9 @@ export class JointinspectPdfComponent implements OnInit {
  table_data : any;
  timeLeft: number = 2;
  interval;
+ eachSpecData:any;
  final_datas = [];
+ getSpecInfo:any[] = [];
 
   constructor(
     private toastr:ToastrManager,
@@ -53,6 +55,8 @@ export class JointinspectPdfComponent implements OnInit {
     console.log("************",this.final_datas.length);
 
     this.job_list_detail = this.final_datas;
+    // this.getSpecInfo = this.job_list_detail[0].getSpecInfo;
+    this.eachSpecData  = this.job_list_detail[0].getSpecInfo[0];
 
    }
 

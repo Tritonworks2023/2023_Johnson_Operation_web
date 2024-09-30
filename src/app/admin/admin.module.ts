@@ -52,9 +52,9 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
 
-import { NgOtpInputModule } from 'ng-otp-input'
+// import { NgOtpInputModule } from 'ng-otp-input'
 import {CheckboxModule} from 'primeng/checkbox';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+// import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DiagnosisComponent } from './pages/diagnosis/diagnosis.component';
 import { SubDiagnosisComponent } from './pages/sub-diagnosis/sub-diagnosis.component';
 import { ServiceManagementComponent } from './pages/service-management/service-management.component';
@@ -148,14 +148,14 @@ import { ErrologDetailComponent } from './pages/errolog-detail/errolog-detail.co
     ButtonModule,
     InputTextModule,
     CalendarModule,
-    AutocompleteLibModule,
+    // AutocompleteLibModule,
     Ng2SearchPipeModule,
     TableModule,
     FileUploadModule,
     TooltipModule,
     MultiSelectModule,
     TabViewModule,
-    NgOtpInputModule,
+    // NgOtpInputModule,
     CheckboxModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({

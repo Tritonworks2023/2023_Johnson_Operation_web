@@ -18,6 +18,8 @@ export class JoininspectionJobDetailsComponent implements OnInit {
   loader_view = false;
 
   final_datas = [];
+  getSpecInfo:any[] = [];
+  eachSpecData:any;
 
   job_count = 0; 
   job_detail : any;
@@ -66,9 +68,13 @@ export class JoininspectionJobDetailsComponent implements OnInit {
           element.count_value = count_value + 1;
           count_value = count_value + 1 ;
         });
+        console.log(count_value)
       });
+      
         this.job_count = (this.job_list_detail.length / 2) - 1;
         this.table_data =  this.job_list_detail[0].data_store;
+        // this.getSpecInfo = this.job_list_detail[0].getSpecInfo;
+        this.eachSpecData  = this.job_list_detail[0].getSpecInfo[0];
         console.log('*****Data*********',this.job_list_detail);
         this.startTimer2();
       }
@@ -141,9 +147,65 @@ print_pdf(){
 
 
 
+
       
 
 
 
 
 }
+
+// {
+//   "_id": "66ed22a1dd06006b12d3ce6e",
+//   "userId": "66de6917c8faef2163e3df26",
+//   "activityId": "",
+//   "jobId": "E-A1379",
+//   "groupId": "6666c5879fc63187b73b9509",
+//   "customerName": "SRM INSTITUTE OF SCIENCE & TECHNOLOGY",
+//   "verticalRise": "4000 MM",
+//   "capacity": "6000/H",
+//   "angleOfInclination": "35 Degree",
+//   "ratedSpeed": "0.50 M/s",
+//   "stepWidth": "1000 MM",
+//   "flatSteps": "TWO",
+//   "installedBy": "Sri Venkateshwara Technical works ",
+//   "testedBy": "Sharabhoji ",
+//   "routeEngineer": "elumalai ",
+//   "zonalEngineer": "janavel ",
+//   "operationHead": "ayubkhan ",
+//   "serviceHead": "osia ",
+//   "serviceRecordDate": "21.09.24",
+//   "motorMakeType": "YFD132M-4",
+//   "motorSlNo": "2405H186",
+//   "motorKW": "7.5 KW",
+//   "motorVoltage": "415",
+//   "motorCurrent": "13.5",
+//   "motorRPM": "1440",
+//   "gearBoxMakeType": "FJ125",
+//   "gearBoxSlNo": "24119169",
+//   "gearBoxOilGrade": "BJ460",
+//   "gearBoxOilCapacity": "7 liter ",
+//   "brakeMakeType": "BRA450",
+//   "brakeSlNo": "24051125",
+//   "brakeTravel": "450mm",
+//   "brakeVoltage": "240 VAC",
+//   "brakeCurrent": "0.68A",
+//   "controllerType": "E-CON",
+//   "controllerSlNo": "24J08093",
+//   "starDelta": "VVVF (Inverter)",
+//   "makeSlNo": "G1000-4T0025AJ",
+//   "v3fCapacity": "11KW",
+//   "contactorsMake": "Schneider ",
+//   "contactorsRating": "32A",
+//   "amps": "32A",
+//   "wiringDiagramNo": "24J08093",
+//   "plcMicroProcesser": "Microprocessor ",
+//   "plcMakeType": "NA",
+//   "transformerMakeType": "SEC/150VA FREQUENCY 50/60HZ",
+//   "trfVACapacity": "150VA",
+//   "voltageIP": "110V",
+//   "voltageOP": "240V",
+//   "createdAt": "2024-09-20T07:22:09.913Z",
+//   "updatedAt": "2024-09-20T07:22:09.913Z",
+//   "__v": 0
+// }
