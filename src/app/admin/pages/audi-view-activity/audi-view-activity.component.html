@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-4">
         <h5 class="form-lable">Activity</h5>
-        <p-dropdown [options]="user_designation_list" [(ngModel)]="activity"  placeholder="Select Activity" optionLabel="status" [showClear]="true"></p-dropdown>
+        <p-dropdown [options]="user_designation_list" [(ngModel)]="activity"  placeholder="Select Activity" optionLabel="value" dataKey="status" optionValue="status" [showClear]="true"></p-dropdown>
       </div>
       <div class="col-md-4">
         <button class="btn btn-primary mt-4" style="height: 50%; font-size: 14px;" (click)="search_value()">Search</button>
@@ -58,22 +58,27 @@
           <div class="card custom-card">
             <div class="card-body">
               <div class="row">
-                  
-                <div class="col-md-6">
+                <div class="col-md-4 text-left"> <!-- Left-aligned div -->
                   <div class="main-content-title tx-24 mb-1">Customer Detail</div><br>
                   <ng-container *ngFor="let item of address;">
                     {{item}},<br>
                   </ng-container>
                 </div>
-                <div class="col-md-6">
+          
+                <div class="col-md-4 text-center" *ngIf="showCustomerDetail"> <!-- Center-aligned div -->
+                  <div class="main-content-title tx-24 mb-1">{{this.activity.status}}</div><br>
+                </div>
+          
+                <div class="col-md-4 text-right"> <!-- Right-aligned div -->
                   <div class="main-content-title tx-24 mb-1">Submitted Detail</div><br>
-                 <b>Submitted by </b> : {{entry_user}}, <br>
-                 <b>Submitted On</b>  : {{submitted_date}}, <br>
-                 <b>Job No</b>  : {{job_no}}
+                  <b>Submitted by </b> : {{entry_user}}, <br>
+                  <b>Submitted On</b>  : {{submitted_date}}, <br>
+                  <b>Job No</b>  : {{job_no}}
                 </div>
               </div>
-              </div>
             </div>
+          </div>
+          
   <div class="card custom-card">
         <div class="card-body">
             <div class="card-item">

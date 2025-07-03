@@ -58,7 +58,8 @@ group_name = '';
   sub_group_lists_name : any;
 
   form = false;
-
+  loader_display = false;
+  count_down = 0;
 
   sub_group_name = '';
 
@@ -128,66 +129,143 @@ group_name = '';
   ////// Inserting Data
 
   Insert_pet_type_details() {
-    if(this.field_name == ''){
-      //alert("Please enter the pet type")
-      this.showWarning("Please enter the Field name")
-    }
-    else if(this.sb_group_list_name._id == undefined ){
-      this.showWarning("Please Select Name or refresh the page")
-    }
-    else{
-    let lifts = [];
-    console.log(this.sub_group_lists_name);
-    let sub_group_id = '';
-    if(this.sub_group_lists_name == undefined){
-      sub_group_id = ''
-    }else{
-      sub_group_id = this.sub_group_lists_name._id;
-    }
-    if(this.field_type.diagnosis == 'Lift'){
-      for(let c = 0 ; c < +this.field_length; c ++ ){
-        let temp = c + 1 ;
-        let d = {
-          "left": "",
-          "title":""+c+" - "+ temp,
+
+    if(this.index < this.rows.length){
+      this.calculation();
+    } else {
+      let numbers = this.index;
+      let datas = this.rows;
+      let api = this._api;
+      if(this.field_name == ''){
+        //alert("Please enter the pet type")
+        this.showWarning("Please enter the Field name")
+      }
+      else if(this.sb_group_list_name._id == undefined ){
+        this.showWarning("Please Select Name or refresh the page")
+      }
+      else{
+      let lifts = [];
+      console.log(this.sub_group_lists_name);
+      let sub_group_id = '';
+      if(this.sub_group_lists_name == undefined){
+        sub_group_id = ''
+      }else{
+        sub_group_id = this.sub_group_lists_name._id;
+      }
+      if(this.field_type.diagnosis == 'Lift'){
+        for(let c = 0 ; c < +this.field_length; c ++ ){
+          let temp = c + 1 ;
+          let d = {
+            "left": "",
+            "title":""+c+" - "+ temp,
+          }
+          lifts.push(d)
         }
-        lifts.push(d)
       }
-    }
 
 
-  let a = {
-  cat_id :  this.cat_id,
-  group_id : this.group_list_name._id,
-  sub_group_id : this.sb_group_list_name._id,
-  field_name : this.field_name,
-  field_type : this.field_type.diagnosis,
-  field_length : this.field_length,
-  field_comments : this.field_comments,
-  field_update_reason : this.field_update_reason,
-  drop_down : this.dropdown_option,
-  date_of_create : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
-  date_of_update : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
-  created_by : this.created_by,
-  updated_by : this.updated_by,
-  lift_list : lifts,
-      };
-    console.log(a);
-    this._api.Field_insert(a).subscribe(
-    (response: any) => {
-      console.log(response.Data);
-      if ( response.Code === 200 ) {
-        //alert('Added Successfully');
-        this.showSuccess("Added Successfully")
-      }else {
-        //alert(response.Message);
-        this.showError(response.Message)
+    let a = {
+    cat_id :  this.cat_id,
+    index : this.index,
+    group_id : this.group_list_name._id,
+    sub_group_id : this.sb_group_list_name._id,
+    field_name : this.field_name,
+    field_type : this.field_type.diagnosis,
+    field_length : this.field_length,
+    field_comments : this.field_comments,
+    field_update_reason : this.field_update_reason,
+    drop_down : this.dropdown_option,
+    date_of_create : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
+    date_of_update : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
+    created_by : this.created_by,
+    updated_by : this.updated_by,
+    lift_list : lifts,
+        };
+      console.log(a);
+      this._api.Field_insert(a).subscribe(
+      (response: any) => {
+        console.log(response.Data);
+        if ( response.Code === 200 ) {
+          //alert('Added Successfully');
+          this.showSuccess("Added Successfully");
+          //this.recall(numbers,datas,api);
+        }else {
+          //alert(response.Message);
+          this.showError(response.Message)
+        }
+        this.ngOnInit();
       }
-      this.ngOnInit();
-    }
-  );
+    );
+      }
     }
   }
+
+  calculation(){
+    {
+      let numbers = this.index;
+      let datas = this.rows;
+      let api = this._api;
+      if(this.field_name == ''){
+        //alert("Please enter the pet type")
+        this.showWarning("Please enter the Field name")
+      }
+      else if(this.sb_group_list_name._id == undefined ){
+        this.showWarning("Please Select Name or refresh the page")
+      }
+      else{
+      let lifts = [];
+      console.log(this.sub_group_lists_name);
+      let sub_group_id = '';
+      if(this.sub_group_lists_name == undefined){
+        sub_group_id = ''
+      }else{
+        sub_group_id = this.sub_group_lists_name._id;
+      }
+      if(this.field_type.diagnosis == 'Lift'){
+        for(let c = 0 ; c < +this.field_length; c ++ ){
+          let temp = c + 1 ;
+          let d = {
+            "left": "",
+            "title":""+c+" - "+ temp,
+          }
+          lifts.push(d)
+        }
+      }
+    let a = {
+    cat_id :  this.cat_id,
+    index : this.index,
+    group_id : this.group_list_name._id,
+    sub_group_id : sub_group_id,
+    field_name : this.field_name,
+    field_type : this.field_type.diagnosis,
+    field_length : this.field_length,
+    field_comments : this.field_comments,
+    field_update_reason : this.field_update_reason,
+    drop_down : this.dropdown_option,
+    date_of_create : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
+    date_of_update : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
+    created_by : this.created_by,
+    updated_by : this.updated_by,
+    lift_list : lifts,
+        };
+      console.log(a);
+      this._api.Field_insert(a).subscribe(
+      (response: any) => {
+        console.log(response.Data);
+        if ( response.Code === 200 ) {
+          //alert('Added Successfully');
+          this.showSuccess("Added Successfully");
+          this.recall(numbers,datas,api);
+        }else {
+          //alert(response.Message);
+          this.showError(response.Message)
+        }
+        this.ngOnInit();
+      }
+    );
+      }
+    }
+   }
 
 
   Edit_pet_type_details(){
@@ -222,6 +300,46 @@ group_name = '';
     }
   );
   }
+
+  stop(){
+    this.loader_display = false;
+    this.showSuccess("Added Successfully");
+    this.ngOnInit();
+   }
+   index_value(value){
+    this.count_down = value;
+   }
+
+  recall(numbers,datas,api){
+    this.index_value(numbers);
+    let temp_value = datas[numbers - 1];
+    if(numbers == datas.length){
+      let a = {
+       '_id' : temp_value._id,
+       'index' : numbers + 1
+      };
+      console.log(a);
+     api.Field_edit(a).subscribe(
+     (response: any) => {
+     // alert('Task Completed');
+     this.stop();
+
+     }
+   );
+    }else{
+     let a = {
+       '_id' : temp_value._id,
+       'index' : numbers + 1
+      };
+      console.log(a);
+     api.Field_edit(a).subscribe(
+     (response: any) => {
+     numbers = numbers + 1;
+     this.recall(numbers,datas,api);
+     }
+   );
+    }
+   }
 
 
 

@@ -15,6 +15,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class JoininspectionJobSubGroupListComponent implements OnInit {
   apiUrl = environment.apiUrl;
   imgUrl = environment.imageURL;
+  isLoading:boolean = true;
   rows = [];
   searchQR:any;
   value1:any;
@@ -75,6 +76,8 @@ export class JoininspectionJobSubGroupListComponent implements OnInit {
       job_id : this.joint_inspection_groupdetail.job_id,
       group_id : this.joint_inspection_groupdetail.group_id
     }
+    this.isLoading = true;
+    this.rows = [];
     this._api.Joint_inspection_jobdetail_sub_group_list(a).subscribe(
       (response: any) => {
         console.log(response.Data);
@@ -86,6 +89,7 @@ export class JoininspectionJobSubGroupListComponent implements OnInit {
           return acc;
         }, []));
         console.log(this.rows);
+        this.isLoading = false;
       }
     );
   }
@@ -229,7 +233,9 @@ export class JoininspectionJobSubGroupListComponent implements OnInit {
       this.storage.set('joint_inspection_detail',data);
       this.router.navigateByUrl('/admin/joininspection_details');
     }
-
+goBack() {
+  this._api.backNavigation();
+}
 
 
 }

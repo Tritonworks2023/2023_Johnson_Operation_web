@@ -40,8 +40,8 @@
           </div>
 
           <div class="col-md-4">
-            <h5 class="form-lable">DEVICE ID</h5>
-            <input type="text" pInputText name="imie_code" [(ngModel)]="imie_code" placeholder="DEVICE ID">
+            <h5 class="form-lable">IMEI CODE</h5>
+            <input type="text" pInputText name="imie_code" [(ngModel)]="imie_code" placeholder="IMEI CODE">
         </div>
 
         <div class="col-md-4">
@@ -53,6 +53,42 @@
         <h5 class="form-lable">LOCATION</h5>
         <input type="text" pInputText name="location" [(ngModel)]="location" placeholder="LOCATION">
     </div>
+    <div class="col-md-4">
+      <h5 class="form-lable">Status</h5>
+      <mat-slide-toggle (change)="delete_status = !delete_status" [checked]="!delete_status">
+        {{ !delete_status ? 'Slide to deactivate the user' : 'Slide to activate the user' }}
+      </mat-slide-toggle>
+      
+  </div>
+  <div class="col-md-4">
+    <h5 class="form-lable">MODEL</h5>
+    <input type="text" pInputText name="model" [(ngModel)]="model" placeholder="MODEL">
+</div>
+<div class="col-md-4">
+  <h5 class="form-lable">REMARKS</h5>
+  <input type="text" pInputText name="remarks" [(ngModel)]="remarks" placeholder="REMARKS">
+</div>
+<div class="col-md-4">
+  <h5 class="form-lable">Job Location</h5> 
+  <select class="form-control" name="" id="" [(ngModel)]="job_location">
+    <option value=" " selected disabled style="display: none;" >Select Job Location</option>
+    <option [value]="item._id"  *ngFor="let item of branchList">
+      {{item.branch_code}}
+    </option>
+  </select> 
+  <!-- <p-dropdown [options]="branchList" [(ngModel)]="job_location"  placeholder="Select" dataKey="_id"  optionLabel="branch_code" [showClear]="true"></p-dropdown> -->
+  <!-- <ng-select 
+  placeholder="Select Job Location" >
+  <ng-option
+  *ngFor="let item of branchList"
+  
+  [value]="item._id"
+  
+  >{{ item.activity_name }}</ng-option
+>
+</ng-select> -->
+</div>
+
 
 
           <!-- <div class="col-md-4">
@@ -108,9 +144,13 @@
                            </div>
                         </div>
                   </div>
+
                   <div class="col-md-6 text-right">
-                      <button type="button" class="btn btn-secondary" (click)="refersh()"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    <button type="button" class="btn btn-secondary" (click)="clearDeviceId()"><i class="fas fa-sync-alt"></i> Clear All Device Id</button>
+                    <button type="button" class="btn btn-secondary" (click)="refersh()"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    <button type="button" class="btn btn-primary" (click)="excelDownload()"><i class="fas fa-file-excel"></i> Excel</button>
                   </div>
+                  
               </div>
 
 
@@ -126,9 +166,10 @@
           <th>User Id</th>
           <th>Name</th>
           <th>Email</th>
+          <th>Device ID</th>
           <th>Password</th>
           <th>Designation</th>
-          <th>Device ID</th>
+          <th>Imei Code</th>
           <th>Agent code</th>
           <th>Location</th>
           <th>Created at</th>
@@ -140,9 +181,12 @@
   <ng-template pTemplate="body" let-item  let-i="rowIndex">
     <tr class="tdrow">
           <td>{{i+1}}</td>
-          <td>{{item.user_id}}</td>
+          <td>{{item.user_id}}
+            <i class="fas fa-sync-alt" style="color: #ff002f;" aria-hidden="true" (click)="clear_device_id_by_number(item.user_id)" pTooltip="Clear Device Id"></i>
+          </td>
           <td>{{item.user_name}}</td>
           <td>{{item.user_email_id}}</td>
+          <td>{{item.device_id}}</td>
           <td>{{item.user_password}}</td>
           <td>{{item.user_designation}}</td>
           <td>{{item.imie_code}}</td>

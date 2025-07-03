@@ -9,8 +9,8 @@ export const environment = {
 
 
     //Dev URL///
-
-  apiUrl: 'https://smart.johnsonliftsltd.com:3000/api/',
+   // apiUrl: 'http://localhost:3004/api/',
+apiUrl: 'https://smart.johnsonliftsltd.com:3000/api/',
   imageURL: 'https://smart.johnsonliftsltd.com:3000/upload'
 
 

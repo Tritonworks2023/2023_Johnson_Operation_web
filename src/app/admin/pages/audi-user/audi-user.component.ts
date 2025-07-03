@@ -35,6 +35,8 @@ export class AudiUserComponent implements OnInit {
   user_name :any;
   user_email_id :any;
   user_password :any;
+  branch_code:any;
+  emp_id:any;
   user_designation :any;
   user_type :any;
   user_status :any;
@@ -95,6 +97,8 @@ export class AudiUserComponent implements OnInit {
     // this.user_type_img = 'http://18.237.123.253:3000/api/uploads/template.jpg';
     this.pet_type_id = '';
     this.update_button = true;
+    this.branch_code = '';
+    this.emp_id = ''
     this.listpettype();
     this.list_actity_type();
   }
@@ -160,6 +164,8 @@ export class AudiUserComponent implements OnInit {
       'user_id'  : this.user_id,
       'user_name'  : this.user_name,
       'user_email_id'  : this.user_email_id,
+      'emp_id'  : this.emp_id,
+      'branch_code'  : this.branch_code,
       'user_password'  : this.user_password,
       'user_designation' : "Admin User",
       'user_type'  : "Mobile",
@@ -197,6 +203,8 @@ export class AudiUserComponent implements OnInit {
       'user_id'  : this.user_id,
       'user_name'  : this.user_name,
       'user_email_id'  : this.user_email_id,
+      'emp_id'  : this.emp_id,
+      'branch_code'  : this.branch_code,
       'user_password'  : this.user_password,
       'user_designation' : "Admin User",
       'user_type'  : this.user_type.status,
@@ -246,6 +254,8 @@ export class AudiUserComponent implements OnInit {
     this.agent_code = data.agent_code ;
     this.location = data.location ;
     this.user_email_id = data.user_email_id ;
+    this.emp_id = data.emp_id? data.emp_id :'' ;
+    this.branch_code = data.branch_code ? data.branch_code :'' ;
     this.user_password = data.user_password ;
     this.user_designation =  {status : data.user_designation};
     this.user_type = {status : data.user_type};

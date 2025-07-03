@@ -556,3 +556,8 @@ textarea {
     padding-right: 2em;
     margin-bottom: 0
 }
+::ng-deep .ui-progress-spinner  {
+    width: 50px !important;
+    height: 50px !important;
+}
+@import "~@ng-select/ng-select/themes/default.theme.css";

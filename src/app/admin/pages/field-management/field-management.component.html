@@ -58,6 +58,7 @@
                     <h5 class="form-lable">Field Type</h5>
                     <p-dropdown [options]="rows1" [(ngModel)]="field_type"  placeholder="Field Type" optionLabel="diagnosis" [showClear]="true"></p-dropdown>
                 </div>
+                
 
                 <div class="col-md-4" *ngIf="field_type.diagnosis == 'Dropdown'">
                   <h5 class="form-lable">DropDown Option</h5>
@@ -89,9 +90,23 @@
                   <input type="number" pInputText name="field_length" [(ngModel)]="field_length" placeholder="Field Length">
               </div>
               <div class="col-md-4">
+                <h5 class="form-label">Is this Required ?</h5>
+                <div>
+                  <input type="radio" name="field_required" [(ngModel)]="field_required" [value]="true" id="requiredRadio">
+                  <label for="requiredRadio">Required</label>
+                </div>
+                <div>
+                  <input type="radio" name="field_required" [(ngModel)]="field_required" [value]="false" id="notRequiredRadio">
+                  <label for="notRequiredRadio">Not Required</label>
+                </div>
+              </div>
+              
+              
+              <div class="col-md-4">
                 <h5 class="form-lable">Field Comment</h5>
                 <textarea type="text" pInputText name="field_comments" [(ngModel)]="field_comments" placeholder="Field Comment"></textarea>
               </div>
+
                   <div class="col-md-4">
                       <button *ngIf="update_button == true" type="button" class="btn btn-primary mt-4" (click)="Insert_pet_type_details()"><i class="fas fa-plus-circle"></i> Add</button>
                       <button *ngIf="update_button == false" type="button" class="btn btn-primary mt-4" (click)="Edit_pet_type_details()"> <i class="fas fa-edit"></i> Update</button>

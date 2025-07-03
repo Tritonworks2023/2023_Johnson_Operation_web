@@ -9,15 +9,15 @@ import { AdminSidebarComponent } from './component/admin-sidebar/admin-sidebar.c
 
 import { HttpClientModule } from '@angular/common/http';
 
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatSelectModule} from '@angular/material/select';
 
-
-
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -52,9 +52,9 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
 
-// import { NgOtpInputModule } from 'ng-otp-input'
+import { NgOtpInputModule } from 'ng-otp-input'
 import {CheckboxModule} from 'primeng/checkbox';
-// import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DiagnosisComponent } from './pages/diagnosis/diagnosis.component';
 import { SubDiagnosisComponent } from './pages/sub-diagnosis/sub-diagnosis.component';
 import { ServiceManagementComponent } from './pages/service-management/service-management.component';
@@ -86,6 +86,11 @@ import { JoininspectionRecalComponent } from './pages/joininspection-recal/joini
 import { LiftwellresubmitComponent } from './pages/liftwellresubmit/liftwellresubmit.component';
 import { ErrologListComponent } from './pages/errolog-list/errolog-list.component';
 import { ErrologDetailComponent } from './pages/errolog-detail/errolog-detail.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { NgSelectModule } from "@ng-select/ng-select";
+import { NotificationComponent } from './pages/notification/notification.component';
+
 
 
 @NgModule({
@@ -124,7 +129,8 @@ import { ErrologDetailComponent } from './pages/errolog-detail/errolog-detail.co
     JoininspectionRecalComponent,
     LiftwellresubmitComponent,
     ErrologListComponent,
-    ErrologDetailComponent
+    ErrologDetailComponent,
+    NotificationComponent
 
 
 
@@ -148,14 +154,14 @@ import { ErrologDetailComponent } from './pages/errolog-detail/errolog-detail.co
     ButtonModule,
     InputTextModule,
     CalendarModule,
-    // AutocompleteLibModule,
+    AutocompleteLibModule,
     Ng2SearchPipeModule,
     TableModule,
     FileUploadModule,
     TooltipModule,
     MultiSelectModule,
     TabViewModule,
-    // NgOtpInputModule,
+    NgOtpInputModule,
     CheckboxModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
@@ -164,6 +170,12 @@ import { ErrologDetailComponent } from './pages/errolog-detail/errolog-detail.co
     GooglePlaceModule,
     FilterPipeModule,
     ReactiveFormsModule,
+    ProgressSpinnerModule,
+    ToggleButtonModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    NgSelectModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

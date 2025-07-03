@@ -35,6 +35,7 @@ export class AudiViewActivityComponent implements OnInit {
   count_value = "0";
 
   lift_value = false;
+  showCustomerDetail: boolean = false;
 
   @ViewChild('imgType', { static: false }) imgType: ElementRef;
 
@@ -47,7 +48,7 @@ export class AudiViewActivityComponent implements OnInit {
    job_no = '';
    activity:any;
 
-  user_designation_list  = [{status : "Audit"}];
+   user_designation_list  = [{status : "Audit",value:''}];
   user_details : any;
   address : any;
   entry_user = '';
@@ -73,14 +74,14 @@ export class AudiViewActivityComponent implements OnInit {
     this.user_details.activity_access.forEach(element => {
       console.log(element);
       if(element.select_status == true){
-        this.user_designation_list.push({status:element.SMU_UKEY_DESCRIPTION});
+        this.user_designation_list.push({status:element.SMU_UKEY_DESCRIPTION,value:`${this.fullForm(element?.SMU_DEPT)} -${element.SMU_UKEY_DESCRIPTION}`});
       }
     });
 
 
       // this._api.new_groupdetail_list().subscribe(
       //   (response: any) => {
-      //     console.log(response.Data);
+      //     console.log(response.Data);`
       //     this.grouplist = response.Data;
       //   }
       // );
@@ -137,6 +138,7 @@ export class AudiViewActivityComponent implements OnInit {
 
   search_value(){
     this.lift_value = false;
+    this.showCustomerDetail = true;
     console.log(this.job_no);
     console.log(this.activity);
     if(this.job_no == ''){
@@ -214,6 +216,17 @@ export class AudiViewActivityComponent implements OnInit {
     window.print();
     document.body.innerHTML = originalContents;
     window.location.reload();
+}
+fullForm(item:string) {
+  if(item == 'ESPD'){
+    return 'LIFT'
+  }else  if(item == 'SERV '){
+    return 'SERVICE'
+  }else  if(item == 'OP'){
+    return 'OPERATION'
+  }else  {
+    return 'ESCALATOR'
+  }
 }
 
 

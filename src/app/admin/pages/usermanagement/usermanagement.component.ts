@@ -6,6 +6,7 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { DatePipe } from '@angular/common';
 import { environment } from '../../../../environments/environment';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { ExcelService } from 'src/app/excel.service';
 
 @Component({
   selector: 'app-usermanagement',
@@ -19,6 +20,7 @@ export class UsermanagementComponent implements OnInit {
   rows = [];
   searchQR:any;
   value1:any;
+  branchList:any[] = [];
 
   S_Date: any;
   E_Date: any;
@@ -27,6 +29,9 @@ export class UsermanagementComponent implements OnInit {
   date_and_time : string = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
   pet_type_list : any = [];
   pet_type_id : string = '';
+  model:string = '';
+  remarks:string = '';
+  job_location:any = ' ';
 
   update_button : boolean;
   selectedimgae : any;
@@ -44,6 +49,7 @@ export class UsermanagementComponent implements OnInit {
   imie_code = '';
   agent_code = '';
   location = '';
+  delete_status:boolean = true;
 
 
 
@@ -65,7 +71,11 @@ export class UsermanagementComponent implements OnInit {
     {status : "Manager"},
     {status : "Field Visit"},
     {status : "Operation"},
-    {status : "Mobile User"}
+    {status : "Mobile User"},
+    {status : "Oper Tech"},
+    {status:'Operation MOD'},
+    {status:'Operation Escal'}
+    // {status : "JIC Tech"}
    ];
 
     user_role_list  =
@@ -88,16 +98,19 @@ export class UsermanagementComponent implements OnInit {
     private _api: ApiService,
     private routes: ActivatedRoute,
     private datePipe: DatePipe,
+    private excelService:ExcelService
   ) { }
 
   ngOnInit(): void {
 
     this.activedetail_name = '';
     this.user_type_value = '0';
+    // this.job_location = ' '
     // this.user_type_img = 'http://18.237.123.253:3000/api/uploads/template.jpg';
     this.pet_type_id = '';
     this.update_button = true;
     this.listpettype();
+    this.getBranchList();
   }
 
 
@@ -121,6 +134,7 @@ export class UsermanagementComponent implements OnInit {
   ////// Inserting Data
 
   Insert_pet_type_details() {
+    console.log(this.job_location)
     if(this.user_id == ''){
       //alert("Please enter the pet type")
       this.showWarning("Please enter the user id")
@@ -130,7 +144,7 @@ export class UsermanagementComponent implements OnInit {
       'user_name'  : this.user_name,
       'user_email_id'  : this.user_email_id,
       'user_password'  : this.user_password,
-      'user_designation' : "Mobile User",
+      'user_designation' : this.user_designation.status,
       'user_type'  : "Mobile",
       'user_status'  : "Available",
       'user_role' : "ESPD",
@@ -138,6 +152,10 @@ export class UsermanagementComponent implements OnInit {
       'imie_code' : this.imie_code,
       'agent_code' : this.agent_code,
       'location' : this.location,
+      'delete_status' : this.delete_status,
+      'remarks' : this.remarks,
+      'model' : this.model,
+      job_location:[this.job_location]
 
       };
     console.log(a);
@@ -173,6 +191,10 @@ export class UsermanagementComponent implements OnInit {
       'imie_code' : this.imie_code,
       'agent_code' : this.agent_code,
       'location' : this.location,
+      'delete_status' : this.delete_status,
+      'remarks' : this.remarks,
+      'model' : this.model,
+      job_location:[this.job_location]
      };
     this._api.userdetail_edit(a).subscribe(
     (response: any) => {
@@ -204,6 +226,8 @@ export class UsermanagementComponent implements OnInit {
 
 
   Editcompanydetailsdata(data) {
+    console.log(data);
+    
     this.update_button = false;
     this.pet_type_id = data._id;
     this.user_id = data.user_id ;
@@ -211,12 +235,17 @@ export class UsermanagementComponent implements OnInit {
     this.imie_code = data.imie_code ;
     this.agent_code = data.agent_code ;
     this.location = data.location ;
+    this.delete_status = data?.delete_status;
+    this.remarks = data?.remarks;
+    this.model = data?.remarks;
     this.user_email_id = data.user_email_id ;
     this.user_password = data.user_password ;
     this.user_designation =  {status : data.user_designation};
     this.user_type = {status : data.user_type};
     this.user_status =  {status : data.user_status};
     this.user_role =  {status : data.user_role};
+    this.job_location = data.job_location[0]
+    console.log(data.delete_status)
   }
 
     filter_date() {
@@ -266,7 +295,56 @@ export class UsermanagementComponent implements OnInit {
       this.imie_code  = "";
       this.agent_code = "";
       this.location = "";
-      this.user_designation = {}
+      this.user_designation = {};
+      this.job_location = ' ';
     }
+
+    clear_device_id_by_number(data) {
+      let userData = {
+        'user_id' : data
+       };
+      this._api.clear_device_id_by_number(userData).subscribe(
+        (response: any) => {
+          this.showSuccess("Device id Cleard successfully")
+          this.ngOnInit();
+        }
+      );
+    }
+
+    clearDeviceId(){
+      this._api.clear_employee_deviceId().subscribe(()=>{   
+        this.showSuccess("All Device id Cleard successfully")
+        this.ngOnInit();
+      });
+    }
+    excelDownload(){
+      const excelData = [];
+      const value=this.rows;
+      value.map(d =>{
+        excelData.push({
+          'User Id':d.user_id,
+          'Name':d.user_name,
+          'Email':d.user_email_id,
+          'Device ID':d.device_id,
+          'Designation': d.user_designation,
+          'Imei Code':d.imie_code,
+          'Agent code':d.agent_code,
+          'Location':d.location
+       });  
+       });
+    this.excelService.exportAsExcelFile(excelData, 'User Details')
+}
+getBranchList(){
+  this._api.getBranchList().subscribe({
+    next:(res:any) => {
+      if(res.Status == 'Success'){
+        this.branchList = res.Data
+      }
+    },
+    error:(error:any) => {
+
+    }
+  })
+}
 
 }

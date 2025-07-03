@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class ApiService {
   [x: string]: any;
   apiUrl = environment.apiUrl;
   imgUrl = environment.imageURL;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ,private location: Location) { }
 
 
 
@@ -291,8 +292,8 @@ audit_userdetail_login(data) {
 
 
         ////Attendance Details Management API//////
-        attendance_list() {
-          return this.http.get(this.apiUrl + 'attendance/getlist');
+        attendance_list(data:any) {
+          return this.http.get(this.apiUrl + `attendance/getlist?fromDate=${data.fromDate}&toDate=${data.toDate}`);
         }
         attendance_insert(data) {
           return this.http.post(this.apiUrl + 'attendance/create', data);
@@ -475,10 +476,13 @@ getbreak_down(){
 
 
 
+flashMessageCreate(data){
+  return this.http.post(this.apiUrl + 'flashmessage/create', data);
+}
+
 breakdown_data_details(data){
   return this.http.post(this.apiUrl + 'breakdown_data_management/fetch_job_id', data);
 }
-
 
 fetch_iso_number(data){
   return this.http.post(this.apiUrl + 'service_userdetails/fetch_iso_number', data);
@@ -514,7 +518,17 @@ liftwell_data_delete_error_log(data) {
   return this.http.post(this.apiUrl + 'activity/check_error_log_job_no_delete', data);
 }
 
+clear_employee_deviceId(){
+  return this.http.get(this.apiUrl +'user_management/operationUserClearDeviceID');
+}
 
+clear_device_id_by_number(data){
+  return this.http.post(this.apiUrl + 'user_management/clear_device_id_by_number', data);
+}
+// Back Navigation
 
+backNavigation() {
+ return this.location.back();
+}
 
 }

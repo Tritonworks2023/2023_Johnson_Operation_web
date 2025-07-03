@@ -32,6 +32,7 @@ import { TabChqcollectionListComponent } from './pages/tab_page/tab-chqcollectio
 import { TabChqcollectionViewComponent } from './pages/tab_page/tab-chqcollection-view/tab-chqcollection-view.component';
 import { TabUsermanagmentComponent } from './pages/tab_page/tab-usermanagment/tab-usermanagment.component';
 import { UsermanagementComponent } from './pages/usermanagement/usermanagement.component';
+import { NotificationComponent } from './pages/notification/notification.component';
 
 
 const routes: Routes = [
@@ -79,6 +80,7 @@ const routes: Routes = [
   { path: 'joint_repush', component: JoininspectionRecalComponent },
   
   { path: 'error_list', component: ErrologListComponent },
+  { path: 'notification', component: NotificationComponent },
   { path: 'error_detail', component: ErrologDetailComponent },
 
 

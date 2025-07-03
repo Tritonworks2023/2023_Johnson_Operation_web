@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  logintest1() {
+  authLogin() {
     this.validator();
     if (this.validation) {
       if ((this.email == 'johnson@gmail.com') && (this.password == '12345')) {

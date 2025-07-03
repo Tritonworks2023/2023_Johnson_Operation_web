@@ -38,3 +38,7 @@ td, th {
     font-weight: 600;
     padding: 11px;
 }
+.list-style {
+  list-style: none;
+  margin-top: 3px;
+}

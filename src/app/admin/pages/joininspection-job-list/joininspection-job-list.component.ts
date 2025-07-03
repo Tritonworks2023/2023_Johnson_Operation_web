@@ -15,6 +15,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class JoininspectionJobListComponent implements OnInit {
   apiUrl = environment.apiUrl;
   imgUrl = environment.imageURL;
+  isLoading:boolean = true;
   rows = [];
   searchQR:any;
   value1:any;
@@ -65,6 +66,8 @@ export class JoininspectionJobListComponent implements OnInit {
 
 
   listpettype() {
+    this.isLoading = true;
+    this.rows = [];
     this._api.Joint_inspection_jobdetail_list().subscribe(
       (response: any) => {
         console.log(response.Data);
@@ -75,6 +78,7 @@ export class JoininspectionJobListComponent implements OnInit {
           return unique;
          },[]);
          this.rows = result;
+         this.isLoading = false;
         console.log(this.rows);
       }
     );
@@ -235,6 +239,8 @@ export class JoininspectionJobListComponent implements OnInit {
       if(this.job_no == ''){
         alert("Please enter job no");
       } else {  
+        this.isLoading = true;
+        this.rows = [];
         let data = {
           job_id : this.job_no
         }
@@ -251,6 +257,7 @@ export class JoininspectionJobListComponent implements OnInit {
              },[]);
     
              this.rows = result;
+             this.isLoading = false;
     
     
     

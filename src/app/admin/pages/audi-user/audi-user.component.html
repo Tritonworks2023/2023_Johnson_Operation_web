@@ -31,6 +31,14 @@
                     <input type="text" pInputText name="user_email_id" [(ngModel)]="user_email_id" placeholder="Email Id">
                 </div>
                 <div class="col-md-4">
+                    <h5 class="form-lable">EMP ID</h5>
+                    <input type="text" pInputText name="emp_id" [(ngModel)]="emp_id" placeholder="EMP ID">
+                </div>
+                <div class="col-md-4">
+                    <h5 class="form-lable">Branch Code</h5>
+                    <input type="text" pInputText name="branch_code" [(ngModel)]="branch_code" placeholder="Branch Code">
+                </div>
+                <div class="col-md-4">
                   <h5 class="form-lable">PASSWORD</h5>
                   <input type="text" pInputText name="user_password" [(ngModel)]="user_password" placeholder="Password">
               </div>
@@ -120,6 +128,8 @@
             <th>User Id</th>
             <th>Name</th>
             <th>Email</th>
+            <th>EMP ID</th>
+            <th>Branch Code</th>
             <th>Password</th>
             <th>Designation</th>
             <th>Created at</th>
@@ -134,6 +144,8 @@
             <td>{{item.user_id}}</td>
             <td>{{item.user_name}}</td>
             <td>{{item.user_email_id}}</td>
+            <td>{{item.emp_id}}</td>
+            <td>{{item.branch_code}}</td>
             <td>{{item.user_password}}</td>
             <td>{{item.user_designation}}</td>
             <td>{{item.reg_date_time}}</td>

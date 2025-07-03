@@ -31,6 +31,7 @@ export class FieldManagementComponent implements OnInit {
   field_type : any;
   field_length : String = '';
   field_comments : String = '';
+  field_required : String = '';
   field_update_reason : String = '';
   date_of_create : String = '';
   date_of_update : String = '';
@@ -99,6 +100,7 @@ group_name = '';
     this.service_name = '';
     this.user_type_value = '0';
     this.field_comments = '';
+    this.field_required = '';
     // this.user_type_img = 'http://18.237.123.253:3000/api/uploads/template.jpg';
     this.pet_type_id = '';
     this.update_button = true;
@@ -186,6 +188,7 @@ group_name = '';
   field_type : this.field_type.diagnosis,
   field_length : this.field_length,
   field_comments : this.field_comments,
+  field_required : this.field_required,
   field_update_reason : this.field_update_reason,
   drop_down : this.dropdown_option,
   date_of_create : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
@@ -227,6 +230,7 @@ group_name = '';
       "field_type" : this.field_type.diagnosis,
       "field_length" : this.field_length,
       "field_comments" : this.field_comments,
+      "field_required" : this.field_required,
       "field_update_reason" : this.field_update_reason,
       "drop_down" : this.dropdown_option,
       '_id' : this.pet_type_id,
@@ -253,6 +257,7 @@ group_name = '';
       "field_type" : this.field_type.diagnosis,
       "field_length" : this.field_length,
       "field_comments" : this.field_comments,
+      "field_required" : this.field_required,
       "field_update_reason" : this.field_update_reason,
       "drop_down" : this.dropdown_option,
       '_id' : this.pet_type_id,
@@ -309,6 +314,7 @@ group_name = '';
     this.field_type = {diagnosis:data.field_type}
     this.field_length = data.field_length;
     this.field_comments = data.field_comments;
+    this.field_required = data.field_required;
     this.field_update_reason = data.field_update_reason;
     this.group_list_name = group_name;
     this.check_index = check_index;
@@ -499,6 +505,7 @@ group_name = '';
       field_type : this.field_type.diagnosis,
       field_length : this.field_length,
       field_comments : this.field_comments,
+      field_required: this.field_required,
       field_update_reason : this.field_update_reason,
       drop_down : this.dropdown_option,
       date_of_create : new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}),
@@ -532,6 +539,7 @@ group_name = '';
        this.field_type = this.rows1[3];
        this.field_length = "";
        this.field_comments = '';
+       this.field_required = '';
      }
 
 

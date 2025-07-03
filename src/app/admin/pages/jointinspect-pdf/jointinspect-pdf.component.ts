@@ -21,9 +21,11 @@ export class JointinspectPdfComponent implements OnInit {
  table_data : any;
  timeLeft: number = 2;
  interval;
- eachSpecData:any;
  final_datas = [];
+
+ eachSpecData:any;
  getSpecInfo:any[] = [];
+ public specInfoVisible: boolean = false;
 
   constructor(
     private toastr:ToastrManager,
@@ -45,18 +47,26 @@ export class JointinspectPdfComponent implements OnInit {
     console.log(datas);
     this.job_list_detail = datas;
     this.job_count = (this.job_list_detail.length / 2) - 1;
-    this.table_data =  this.job_list_detail[0].data_store;
+    this.table_data = this.job_list_detail[this.job_list_detail.length - 1].data_store;
+    //this.table_data =  this.job_list_detail[0].data_store;
 
 
     this.final_datas = [];
 
     this.final_datas.push(this.job_list_detail[0]);
     this.final_datas.push(this.job_list_detail[this.job_list_detail.length - 1]);
-    console.log("************",this.final_datas.length);
+    console.log("************",this.final_datas);
 
     this.job_list_detail = this.final_datas;
-    // this.getSpecInfo = this.job_list_detail[0].getSpecInfo;
+
+
     this.eachSpecData  = this.job_list_detail[0].getSpecInfo[0];
+    const specInfo:any[] = this.job_list_detail[0].getSpecInfo;
+    if(specInfo.length > 0) {
+      this.specInfoVisible = true;
+    }else {
+      this.specInfoVisible = false;
+    }
 
    }
 
@@ -74,6 +84,9 @@ export class JointinspectPdfComponent implements OnInit {
     document.body.innerHTML = originalContents;
     window.location.reload();
 
+}
+goBack() {
+  this._api.backNavigation();
 }
 
 }
